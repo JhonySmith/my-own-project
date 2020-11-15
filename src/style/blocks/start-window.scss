@@ -1,0 +1,61 @@
+.start-window {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: $dark-bg-color;
+
+  color: $light-text-color;
+}
+
+.start-window__comment {
+  font-size: 14px;
+}
+
+.start-window__slogan-text {
+  margin-bottom: 30px;
+
+  @include font-param();
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.start-window__default-text {
+  max-width: 810px;
+
+  @include font-param();
+  text-align: justify;
+}
+
+.start-window__contacts {
+  max-width: 810px;
+  margin-bottom: 50px;
+
+  @include font-param();
+  text-align: justify;
+}
+
+.start-window__close-button {
+  padding: 20px;
+
+  background-color: transparent;
+  border: 1px solid white;
+
+  @include font-param();
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: background-color 1s, color 1s;
+
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}

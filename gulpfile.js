@@ -3,7 +3,7 @@ const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
 
 const htmlMin = require('gulp-htmlmin');
-const gup = require('gulp-pug');
+const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const csso = require('gulp-csso');
 const postcss = require('gulp-postcss');
@@ -40,16 +40,16 @@ const html = () => {
 exports.html = html;
 
 // gup
-const gupHTML = () => {
+const pugToHtml = () => {
   return gulp
-    .src('src/*.gup')
-    .pipe(gup())
+    .src('src/*.pug')
+    .pipe(pug())
     .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('public'))
     .pipe(browserSync.stream());
 };
 
-exports.gupHTML = gupHTML;
+exports.pugToHtml = pugToHtml;
 
 exports.html = html;
 // scss
@@ -98,12 +98,12 @@ const img = () => {
 exports.copy = copy;
 
 const watcher = () => {
-  gulp.watch('src/*.gup', gulp.series('gupHTML'));
+  gulp.watch('src/*.pug', gulp.series('pugToHtml'));
   gulp.watch('src/style/**/*.scss', gulp.series('styles'));
   gulp.watch('src/script/**/*.ts', gulp.series('typeScript'));
 };
 
-const build = gulp.series(gupHTML, styles, typeScript, copy, img);
+const build = gulp.series(pugToHtml, styles, typeScript, copy, img);
 
 exports.build = build;
 

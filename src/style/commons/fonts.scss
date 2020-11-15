@@ -1,0 +1,25 @@
+$Ubuntu: 'Ubuntu', 'Arial', sans-serif;
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/ubuntu-v15-cyrillic-300.woff2') format('woff2'),
+    url('../fonts/ubuntu-v15-cyrillic-300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ubuntu-v15-cyrillic-regular.woff2') format('woff2'),
+    url('../fonts/ubuntu-v15-cyrillic-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/ubuntu-v15-cyrillic-700.woff2') format('woff2'),
+    url('../fonts/ubuntu-v15-cyrillic-700.woff') format('woff');
+}
