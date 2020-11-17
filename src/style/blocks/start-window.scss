@@ -1,3 +1,5 @@
+$first-animation-duration: 2s;
+
 .start-window {
   position: absolute;
 
@@ -24,17 +26,30 @@
   @include font-param();
   font-weight: 700;
   font-size: 24px;
+
+  animation: slogan-opacity $first-animation-duration;
 }
 
 .start-window__default-text {
-  max-width: 810px;
+  width: 810px;
 
   @include font-param();
   text-align: justify;
 }
 
+.start-window__cursor {
+  &::after {
+    content: ' |';
+    font-size: 20px;
+
+    animation-name: text-cursor;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+}
+
 .start-window__contacts {
-  max-width: 810px;
+  width: 810px;
   margin-bottom: 50px;
 
   @include font-param();
@@ -57,5 +72,24 @@
   &:hover {
     background-color: white;
     color: black;
+  }
+}
+
+@keyframes slogan-opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-cursor {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

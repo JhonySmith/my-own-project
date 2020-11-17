@@ -11,6 +11,8 @@ const autoprfixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
+const babel = require('gulp-babel');
+const webpack = require('webpack-stream');
 const { stream } = require('browser-sync');
 const { src } = require('gulp');
 
@@ -71,14 +73,22 @@ exports.styles = styles;
 
 const typeScript = () => {
   return gulp
-    .src('src/script/**/*.ts')
+    .src('src/script/main.js')
     .pipe(
-      ts({
-        noImplicitAny: true,
-        outFile: 'main.js',
+      webpack({
+        mode: 'development',
+        output: {
+          filename: 'bundle.js',
+        },
       }),
     )
-    .pipe(gulp.dest('public/js'));
+    .pipe(
+      babel({
+        presets: ['@babel/env'],
+      }),
+    )
+    .pipe(gulp.dest('public/js'))
+    .pipe(browserSync.stream());
 };
 
 exports.typeScript = typeScript;
@@ -100,7 +110,7 @@ exports.copy = copy;
 const watcher = () => {
   gulp.watch('src/*.pug', gulp.series('pugToHtml'));
   gulp.watch('src/style/**/*.scss', gulp.series('styles'));
-  gulp.watch('src/script/**/*.ts', gulp.series('typeScript'));
+  gulp.watch('src/script/**/*.js', gulp.series('typeScript'));
 };
 
 const build = gulp.series(pugToHtml, styles, typeScript, copy, img);
